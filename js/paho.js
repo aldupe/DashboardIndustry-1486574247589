@@ -1531,7 +1531,7 @@ Messaging = (function (global) {
 				throw new Error(format(ERROR.INVALID_TYPE, [typeof path, "path"]));
 			
 			var ipv6 = (host.indexOf(":") != -1);
-			uri = "ws://"+(ipv6?"["+host+"]":host)+":"+port+path;
+			uri = "wss://"+(ipv6?"["+host+"]":host)+":"+port+path;
 		}
 
 		var clientIdLength = 0;
@@ -1697,7 +1697,7 @@ Messaging = (function (global) {
 						var port = connectOptions.ports[i];
 						
 						var ipv6 = (host.indexOf(":") != -1);
-						uri = "ws://"+(ipv6?"["+host+"]":host)+":"+port+path;
+						uri = "wss://"+(ipv6?"["+host+"]":host)+":"+port+path;
 						connectOptions.uris.push(uri);
 					}
 				} else {
