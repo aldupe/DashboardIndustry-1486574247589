@@ -65,13 +65,16 @@
                 client.connect(options);
                 setTimeout(function() {client.subscribe(subTopic, {qos: 2})},3000);
             };
+            
             //On message arrived
             client.onMessageArrived = function (message) {
 				console.log(message.payloadString);
-                if(message.destinationName === "presencia"){
-                    mensajePresencia(message.payloadString);
-                }else if(message.destinationName === "foto/base64"){
-                    mensajeFoto(message.payloadString, fotoListening);
+				values = JSON.parse(message.payloadString);
+				console.log(values.response);
+				console.log(values._id);
+				mensajePresencia(1);
+                if(values.response == 1){
+                   mensajeFoto(values._id, fotoListening);
                 }
             };
             //Connect Options
