@@ -152,7 +152,7 @@
             //On DOM ready
             $(function () {
                 client.connect(options);
-                setTimeout(function() {client.subscribe(subTopic, {qos: 2});client.subscribe(subTopic2, {qos: 2});},3000);
+                setTimeout(function() {client.subscribe(subTopic, {qos: 2})},3000);
 
                 var btn = $("#svgImg2");
                 var modal = $("#myModal");
