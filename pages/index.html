@@ -111,7 +111,7 @@
             }
             var timeoutPresencia;
             function mensajePresencia(presencia){
-                if(presencia === "1"){
+                if(presencia == 1){
                     $("#svgImg").show();
                     if(!timeoutPresenciaRunning){
                         timeoutPresenciaRunning = true;
@@ -124,9 +124,10 @@
                 }
 
             };
+
             function alertaSonido(texto){
                 var audio = document.getElementById("audioTag");
-                audio.src = "http://democascoadp.mybluemix.net/reproduce?text=" + texto;
+                audio.src = "https://helmethealthdemoadp.mybluemix.net/reproduce?text=" + texto;
             }
 
             function mensajeFoto(foto, listening){
