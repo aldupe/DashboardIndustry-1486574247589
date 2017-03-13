@@ -63,7 +63,7 @@
             client.onConnectionLost = function (responseObject) {
                 document.getElementById('JB4').style.color='red';
                 client.connect(options);
-                setTimeout(function() {client.subscribe(subTopic, {qos: 2});client.subscribe(subTopic2, {qos: 2});},3000);
+                setTimeout(function() {client.subscribe(subTopic, {qos: 2})},3000);
             };
             //On message arrived
             client.onMessageArrived = function (message) {
