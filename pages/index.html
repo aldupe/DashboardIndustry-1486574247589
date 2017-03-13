@@ -45,12 +45,14 @@
 <script type="text/javascript" src="../js/paho.js"></script>
 <script type="text/javascript">
     //VARIABLES ---------------------------------------------------------------------------------------------------------------
-        var broker = "test.mosquitto.org";                                                                  //broker url
-        var port = 8080;                                                                              //port
+        var broker = "1xjlgb.messaging.internetofthings.ibmcloud.com";                                     //broker url
+        var port = 8883;
+		var clientID = "a:1xjlgb:"+randomString(10); 
         //var pubTopic = "/SP/write/status";
-        var subTopic = "foto/base64";
-        var subTopic2 = "presencia";                                                             //subscription topic
-        var client = new Messaging.Client(broker, port, "iotDashboard" + randomString(10));                       //mq client
+        //var subTopic = "foto/base64";
+        //var subTopic2 = "presencia"; 
+        var subTopic = "iot-2/type/MiRasPI/id/+/evt/alert/fmt/json";                       //subscription topic
+        var client = new Messaging.Client(broker, port, clientID);                       //mq client
         var timeoutPresenciaRunning = false;
         var fotoListening = true;
         var arrayMedidas;
@@ -75,6 +77,9 @@
             //Connect Options
             var options = {
                 timeout: 3,
+                userName: "a-1xjlgb-h6r3twxu1i",
+				password: "t2Mc5ICLnGynnj*kKB",
+				useSSL: true,
                 //Gets Called if the connection has sucessfully been established
                 onSuccess: function () {
                    document.getElementById('JB4').style.color='#00e600';
@@ -127,14 +132,15 @@
                   alertaSonido("Porfavor, pongase el casco. Gracias.");
                     fotoListening = false;
                     $("#svgImg2").show();
-                    var aux = JSON.parse(foto);
-                    console.log(aux.response);
+                    //var aux = JSON.parse(foto);
+                    //console.log(aux.response);
                     if ($("#JBImagen").length) {
                         $("#JBImagen").remove();
                     }
-                    $("#JBBody").append('<img id="JBImagen" src="data:image/jpeg;base64,'+aux.foto+'" alt="fotoCamara" style="display: block; margin-left: auto; margin-right: auto">');
+                    $("#JBBody").append('<img id="JBImagen" src="https://helmethealthdemoadp.mybluemix.net/id?_id='+foto+'" alt="fotoCamara" style="display: block; margin-left: auto; margin-right: auto">');
                 }
             };
+
 
             //MODAL ---------------------------------------------------------
             // Get the modal
